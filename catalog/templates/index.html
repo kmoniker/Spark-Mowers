@@ -1,0 +1,124 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% load static %}
+
+<!-- Gigantic Heading -->
+    <section class="wrapper style1">
+        <div class="container">
+            <header class="major">
+                <h2>Get a tune-up today!</h2>
+                <p>Only $50 in Utah Valley - we'll come get your lawn mower and take care of everything.</p>
+            </header>
+        </div>
+    </section>
+
+<!-- Highlights -->
+    <section class="wrapper style2">
+        <div class="container">
+            <header class="major">
+            <h2>Why get a tune-up?</h2>
+            </header>
+            <div class="row 200%">
+                <section class="4u 12u(narrower)">
+                    <div class="box highlight">
+                        <i class="icon major fa-thumbs-up"></i>
+                        <h3>One Pull Start</h3>
+                        <p>Lawn mower getting hard to start? Most lawn mowers are one tune-up away from starting on the first pull! </p>
+                    </div>
+                </section>
+                <section class="4u 12u(narrower)">
+                    <div class="box highlight">
+                        <i class="icon major fas fa-cut"></i>
+                        <h3>Better Lawn Health</h3>
+                        <p>A dull lawn mower blade is like trying to cut grass with a baseball bat.  A freshly sharpened blade gives cleaner cuts and a healthier lawn.</p>
+                    </div>
+                </section>
+                <section class="4u 12u(narrower)">
+                    <div class="box highlight">
+                        <i class="icon major fa-leaf"></i>
+                        <h3>Improve Fuel Efficiency</h3>
+                        <p>An annual lawn mower tune-up can improve your fuel effeciency by up to 30%.  A tune-up also extends the life of your lawn mower and reduced costly repairs.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+<!-- Posts -->
+    <section class="wrapper style1">
+        <div class="container">
+            <header class="major">
+            <h2>What is included in a tune-up?</h2>
+            </header>
+            <div class="row">
+                <section class="6u 12u(narrower)">
+                    <div class="box post">
+                        <a href="#" class="image left"><img src="{% static 'arcana/images/oil-change.jpg'%}" alt="" /></a>
+                        <div class="inner">
+                            <h3>Change the oil</h3>
+                            <p>When was the last time your oil was changed?  Most manufacturers recommend an annual oil change to keep your lawn mower runing smoothly for years to come.</p>
+                        </div>
+                    </div>
+                </section>
+                <section class="6u 12u(narrower)">
+                    <div class="box post">
+                        <a href="#" class="image left"><img src="{% static 'arcana/images/sharp-blade.jpg'%}" alt="" /></a>
+                        <div class="inner">
+                            <h3>Sharpen the blade</h3>
+                            <p>A dull blade will rip your grass instead making a clean, healthy cut.  It'll also cut faster, meaning less time spent mowing the lawn.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="row">
+                <section class="6u 12u(narrower)">
+                    <div class="box post">
+                        <a href="#" class="image left"><img src="{% static 'arcana/images/spark-plug.jpg'%}" alt="" /></a>
+                        <div class="inner">
+                            <h3>Replace the spark plug</h3>
+                            <p>A fresh spark plug can improve fuel effeciency and make your lawn mower easier to start.</p>
+                        </div>
+                    </div>
+                </section>
+                <section class="6u 12u(narrower)">
+                    <div class="box post">
+                        <a href="#" class="image left"><img src="{% static 'arcana/images/clean-air-filter.jpeg'%}" alt="" /></a>
+                        <div class="inner">
+                            <h3>Clean the air filter</h3>
+                            <p>A dirty air filter in your lawn mower can reduce fuel effeciency by more than 30 percent and can make your lawn mower difficult to start up.</p>
+                        </div>
+                    </div>
+                </section>
+                <section class="6u 12u(narrower)">
+                    <div class="box post">
+                        <a href="#" class="image left"><img src="{% static 'arcana/images/clean-chassis.jpg'%}" alt="" /></a>
+                        <div class="inner">
+                            <h3>Clean the chassis</h3>
+                            <p>Dirt and grass that builds up on the engine and deck can prevent proper air flow and cooling.  We'll clean it out for you.</p>
+                        </div>
+                    </div>
+                </section>
+                <section class="6u 12u(narrower)">
+                    <div class="box post">
+                        <a href="#" class="image left"><img src="{% static 'arcana/images/clean-chassis.jpg'%}" alt="" /></a>
+                        <div class="inner">
+                            <h3>Fast Service</h3>
+                            <p>We'll come pick up your lawn mower and service it, then return it to you.  Usually done in a couple of days.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+
+<!-- CTA -->
+    <section id="cta" class="wrapper style3">
+        <div class="container">
+            <header>
+                <h2>Call us and schedule your tune-up today!</h2>
+                <a href="tel:555-555-5555" class="button"><img style="width:13px;" src="{% static 'images/call_us.png' %}"/> <em>555-534-1173</em></a>
+            </header>
+        </div>
+    </section>
+{% endblock %}

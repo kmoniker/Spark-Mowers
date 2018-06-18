@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<!--
+	Arcana by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+		{% load static %}
+		{% load auth_extras %}
+<html>
+	<head>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+		<title>Spark Lawn Mower Tune-ups</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+
+		<link rel="stylesheet" href="{% static 'arcana/assets/css/main.css' %}">
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body>
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+					<!-- Logo -->
+						<a href="{% url 'index' %}"><img src="{% static 'images/greensparklogo.png' %}" alt="Spark logo" style="height:175px;margin-bottom:9px"/></a>
+						<h1 style="color:#ffffffff; font-size:1px" id="logo">Spark<em> Lawn Mower Tune-ups</em></h1>
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li class="{% if request.resolver_match.url_name == "index" %}current{% endif %}"><a href="{% url 'index' %}">Home</a></li>
+
+								<li class="{% if request.resolver_match.url_name == "services" %}current{% endif %}"><a href="{% url 'services'%}">Services</a></li>
+								{% if user.is_superuser %}
+								<li class="{% if request.resolver_match.url_name == "for-sale" %}current{% endif %}"><a href="{% url 'for-sale' %}">For Sale</a></li>
+								{% endif %}
+								<li class="{% if request.resolver_match.url_name == "about-us" %}current{% endif %}"><a href="{% url 'about-us'%}">About Us</a></li>
+								{% if user.is_superuser %}
+								<li><a href="two-sidebar.html">Classes</a></li>
+								{% endif%}
+								{% if user.is_authenticated %}
+								{% if request.user|has_group:"Employees" %}
+									<li> Customer Relationship Management</li>
+								{% endif %}
+					                <li>
+					                    <a href="{% url 'logout'%}?next={{request.path}}">Logout</a>
+					                </li>
+									<li style="color:#C0c0c0">
+									   User: {{ user.get_username }}
+									</li>
+					            {% endif %}
+								<li>
+									<a href="tel:3854292078"> <img style="width:13px;" src="{% static 'images/grey_call_us.png' %}"/> <em>385-429-2078</em></a>
+								</li>
+							</ul>
+						</nav>
+
+				</div>
+
+{% block content %}{% endblock %}
+
+			<!-- Footer -->
+				<div id="footer">
+					<div class="container">
+											<div class="row">
+												<section class="3u 6u(narrower) 12u$(mobilep)">
+													<h3><a href="{% url 'contact-us' %}">Contact Us</a></h3>
+													<ul class="links">
+														<li><a href="tel:3854292078">385-429-2078</a></li>
+														<li><a href="mailto:sparklawnmowers@gmail.com">sparklawnmowers@gmail.com</a>
+														</li>
+														<li><h3>Address</h3></li>
+														<li>646 W 630 S</li>
+														<li>Orem, Utah</li>
+
+													</ul>
+												</section>
+												<section class="3u 6u$(narrower) 12u$(mobilep)">
+													<h3>Spark Lawn Mower Tune-ups</h3>
+													<ul class="links">
+														<li><a href="{% url 'about-us' %}">About Us</a></li>
+													</ul>
+												</section>
+											</div>
+										</div>
+					<!-- Copyright -->
+						<div class="copyright">
+							<ul class="menu">
+								<li>&copy; Spark Lawn Mower Tune-ups. All rights reserved</li>
+								<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+								{% if user.is_authenticated %}
+					                <li>
+					                    <a href="{% url 'logout'%}?next={{request.path}}">Logout</a>
+					                </li>
+									<li style="color:#C0c0c0">
+									   User: {{ user.get_username }}
+									</li>
+								{% else %}
+									<li>
+										<a href="{% url 'login'%}?next={{request.path}}">Login</a>
+									</li>
+					            {% endif %}
+
+							</ul>
+						</div>
+
+				</div>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="{% static 'arcana/assets/js/jquery.min.js'%}"></script>
+			<script src="{% static 'arcana/assets/js/jquery.dropotron.min.js'%}"></script>
+			<script src="{% static 'arcana/assets/js/skel.min.js'%}"></script>
+			<script src="{% static 'arcana/assets/js/util.js'%}"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="{% static 'arcana/assets/js/main.js'%}"></script>
+
+	</body>
+</html>

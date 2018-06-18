@@ -1,0 +1,67 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block content %}
+<!-- Main -->
+	<section class="wrapper style1">
+		<div class="container">
+			<div class="row 200%">
+				<div class="4u 12u(narrower)">
+					<div id="sidebar">
+
+						<!-- Sidebar -->
+
+							<section>
+								<h3>Lawn Mowers for Sale</h3>
+                                {% if forsale_list %}
+
+                                <ul>
+
+                                  {% for mower in forsale_list %}
+                                  <!-- Gigantic Heading -->
+                                  <li><b>
+                                      <a href="{{ mower.get_absolute_url }}">{{ mower.brand }} ({{mower.list_price}})</a>
+                                  </b></li>
+                                  {% endfor %}
+
+                                </ul>
+                                {% else %}
+
+                                {% endif %}
+							</section>
+					</div>
+				</div>
+				<div class="8u  12u(narrower) important(narrower)">
+					<div id="content">
+
+						<!-- Content -->
+                        {% if forsale_list %}
+
+                        <ul>
+
+                          {% for mower in forsale_list %}
+                          <!-- Gigantic Heading -->
+                          <li>
+                              <article>
+  								<header>
+  									<h2><a href="{{ mower.get_absolute_url }}">{{ mower.brand }}</a></h2>
+  									<p>{{mower.list_price}}</p>
+  								</header>
+                                <span class="image featured"><img style="max-width:70%;" src="{{ mower.picture.url }}" alt="" /></span>
+                          </li>
+                          {% endfor %}
+
+                        </ul>
+                        {% else %}
+                          <p>There are no mowers currently for sale. Check back later, or send us an email and let us know you want to be notivied about new listings.</p>
+                        {% endif %}
+
+							</article>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<!-- Main -->
+	<section class="wrapper style1">
+		<div class="container">
+			<div id="content">
+
+				<!-- Content -->
+
+					<article>
+						<header>
+							<h2>Services</h2>
+							<p>Get your lawn mower back into working order.</p>
+						</header>
+
+						<p>Even if you properly maintain your lawn mower with an annual tune-up, things can break. Here's an idea of what we can do to help. Don't worry about transporting your mower - we'll come to you for free!</p>
+
+                        {% if servicetype_list %}
+                        <ul>
+
+                          {% for service in servicetype_list %}
+                          <li>
+                            <h3>{{ service.service }} - {{service.price}}</h3>
+                            <p>{{ service.description}}
+                          </li>
+                          {% endfor %}
+
+                        </ul>
+                        {% else %}
+                          <p>There's nothing here.</p>
+                        {% endif %}
+
+					</article>
+
+			</div>
+		</div>
+	</section>
+{% endblock %}

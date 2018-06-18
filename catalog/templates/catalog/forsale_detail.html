@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <header class="major">
+  <h1>brand: {{ mower.brand }}</h1>
+</header>
+<img src={{mower.picture}}/>
+
+<br>
+
+<h2>{{mower.price}}</h2>
+{% endblock %}
