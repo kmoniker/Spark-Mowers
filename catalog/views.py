@@ -43,10 +43,10 @@ def SaleListingDetailView(request,pk):
     try:
         salelisting_id=SaleListing.objects.get(pk=pk)
     except SaleListing.DoesNotExist:
-        raise Http404("Mower does not exist")
+        raise Http404("Listing does not exist")
 
     return render(
         request,
         'catalog/salelisting_detail.html',
-        context={'mower':salelisting_id,}
+        context={'listing':salelisting_id,}
     )
