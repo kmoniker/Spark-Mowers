@@ -65,22 +65,34 @@
 				<div id="footer">
 					<div class="container">
 											<div class="row">
+												<section class="3u 6u$(narrower) 12u$(mobilep)">
+													<h3>Address</h3>
+													<ul class="links">
+														<li>646 W 630 S</li>
+														<li>Orem, Utah</li>
+													</ul>
+												</section>
 												<section class="3u 6u(narrower) 12u$(mobilep)">
 													<h3><a href="{% url 'contact-us' %}">Contact Us</a></h3>
 													<ul class="links">
 														<li><a href="tel:3854292078">385-429-2078</a></li>
 														<li><a href="mailto:sparklawnmowers@gmail.com">sparklawnmowers@gmail.com</a>
 														</li>
-														<li><h3>Address</h3></li>
-														<li>646 W 630 S</li>
-														<li>Orem, Utah</li>
-
 													</ul>
 												</section>
 												<section class="3u 6u$(narrower) 12u$(mobilep)">
 													<h3>Spark Lawn Mower Tune-ups</h3>
 													<ul class="links">
 														<li><a href="{% url 'about-us' %}">About Us</a></li>
+														{% if user.is_authenticated %}
+															<li>
+																<a href="{% url 'logout'%}?next={{request.path}}">Logout {{ user.get_username }}</a>
+															</li>
+														{% else %}
+															<li>
+																<a href="{% url 'login'%}?next={{request.path}}">Login</a>
+															</li>
+														{% endif %}
 													</ul>
 												</section>
 											</div>
@@ -88,21 +100,9 @@
 					<!-- Copyright -->
 						<div class="copyright">
 							<ul class="menu">
+								<li><img src="{% static 'images/greysparklogo.png' %}" alt="Spark logo" style="width:40%"/></li>
 								<li>&copy; Spark Lawn Mower Tune-ups. All rights reserved</li>
 								<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-								{% if user.is_authenticated %}
-					                <li>
-					                    <a href="{% url 'logout'%}?next={{request.path}}">Logout</a>
-					                </li>
-									<li style="color:#C0c0c0">
-									   User: {{ user.get_username }}
-									</li>
-								{% else %}
-									<li>
-										<a href="{% url 'login'%}?next={{request.path}}">Login</a>
-									</li>
-					            {% endif %}
-
 							</ul>
 						</div>
 

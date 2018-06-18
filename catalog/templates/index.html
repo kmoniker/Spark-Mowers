@@ -3,12 +3,23 @@
 {% block content %}
 {% load static %}
 
+
+<!-- CTA -->
+    <section id="cta" class="wrapper style3">
+        <div class="container">
+            <header>
+                <h2>Call us and schedule your tune-up today!</h2>
+                <a href="tel:3854292078" class="button"><img style="width:13px;" src="{% static 'images/call_us.png' %}"/> <em>385-429-2078</em></a>
+            </header>
+        </div>
+    </section>
 <!-- Gigantic Heading -->
     <section class="wrapper style1">
         <div class="container">
             <header class="major">
-                <h2>Get a tune-up today!</h2>
-                <p>Only $50 in Utah Valley - we'll come get your lawn mower and take care of everything.</p>
+                <del>$70 Tune-up</del>
+                <h2> Only $50 for a Tune-up!</h2>
+                <p>Best deal in Utah Valley - we'll come get your lawn mower and take care of everything.</p>
             </header>
         </div>
     </section>
@@ -109,16 +120,6 @@
                     </div>
                 </section>
             </div>
-        </div>
-    </section>
-
-<!-- CTA -->
-    <section id="cta" class="wrapper style3">
-        <div class="container">
-            <header>
-                <h2>Call us and schedule your tune-up today!</h2>
-                <a href="tel:555-555-5555" class="button"><img style="width:13px;" src="{% static 'images/call_us.png' %}"/> <em>555-534-1173</em></a>
-            </header>
         </div>
     </section>
 {% endblock %}
