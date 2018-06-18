@@ -69,8 +69,9 @@ class Employee(models.Model):
         return self.name
 
 class ForSale(models.Model):
-    brand = models.CharField(max_length=200)
     picture = models.ImageField(upload_to="gallery")
+    lawn_mower = models.ForeignKey('LawnMower', on_delete=models.SET_NULL, null=True)
+    description = models.TextField(max_length=2000)
     list_price = models.CharField(max_length=20)
     list_date = models.DateField()
     sale_price = models.CharField(max_length=20, null=True, blank=True)
@@ -78,7 +79,8 @@ class ForSale(models.Model):
     sale_customer = models.ForeignKey('Customer', on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
-        return "%s %s" % (self.brand, self.list_price)
+        #return "%s %s" % (self.lawn_mower.brand, self.list_price)
+        return self.pk
 
     def get_absolute_url(self):
                 return reverse('forsale-detail', args=[str(self.id)])
