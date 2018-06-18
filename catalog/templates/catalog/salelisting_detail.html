@@ -2,11 +2,11 @@
 
 {% block content %}
     <header class="major">
-  <h1>brand: {{ mower.brand }}</h1>
+  <h1>brand: {{ listing.lawn_mower.brand }}</h1>
 </header>
-<img src={{mower.picture}}/>
+<img src={{listing.picture}}/>
 
 <br>
 
-<h2>{{mower.price}}</h2>
+<h2>{{listing.sale_price}}</h2>
 {% endblock %}
