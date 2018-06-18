@@ -13,26 +13,26 @@
 
 							<section>
 								<h3>Lawn Mowers for Sale</h3>
-                                {% if forsale_list %}
 
                                 <ul>
 								  {% if request.user|has_group:"Employees" %}
 								  <li>
-									  <b><a href="/admin/catalog/forsale/add/">New Listing</a></b>
+									  <b><a href="/admin/catalog/salelisting/add/">New Listing</a></b>
 								  </li>
 								  <li><br></li>
 								  {% endif %}
-                                  {% for mower in forsale_list %}
+								  {% if salelisting_list %}
+                                  {% for mower in salelisting_list %}
                                   <!-- Gigantic Heading -->
                                   <li><b>
                                       <a href="{{ mower.get_absolute_url }}">{{ mower.lawn_mower.brand }} ({{mower.list_price}})</a>
                                   </b></li>
                                   {% endfor %}
 
-                                </ul>
                                 {% else %}
 
                                 {% endif %}
+								</ul>
 							</section>
 					</div>
 				</div>
@@ -40,11 +40,11 @@
 					<div id="content">
 
 						<!-- Content -->
-                        {% if forsale_list %}
+                        {% if salelisting_list %}
 
                         <ul>
 
-                          {% for mower in forsale_list %}
+                          {% for mower in salelisting_list %}
                           <!-- Gigantic Heading -->
                           <li>
                               <article>

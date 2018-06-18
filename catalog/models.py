@@ -52,9 +52,8 @@ class LawnMower(models.Model):
     """
 
     brand = models.CharField(max_length=200)
-    engine_model = models.CharField(max_length=200, help_text="model number of the engine")
-    chassis_model = models.CharField(max_length=200, help_text="model number of the chassis")
-    serial_number = models.CharField(max_length=200, help_text="serial number")
+    engine_model = models.CharField(max_length=200, help_text="model number of the engine", blank=True)
+    chassis_model = models.CharField(max_length=200, help_text="model number of the chassis", blank=True)
     spark_plug = models.CharField(max_length=200)
     owner = models.ForeignKey('Customer', on_delete=models.SET_NULL, null=True)
     service_record = models.ManyToManyField(ServiceInstance, blank=True)
@@ -68,7 +67,7 @@ class Employee(models.Model):
     def __str__(self):
         return self.name
 
-class ForSale(models.Model):
+class SaleListing(models.Model):
     picture = models.ImageField(upload_to="gallery")
     lawn_mower = models.ForeignKey('LawnMower', on_delete=models.SET_NULL, null=True)
     description = models.TextField(max_length=2000)
@@ -76,13 +75,10 @@ class ForSale(models.Model):
     list_date = models.DateField()
     sale_price = models.CharField(max_length=20, null=True, blank=True)
     sale_date = models.DateField(null=True, blank=True)
-    sale_customer = models.ForeignKey('Customer', on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         #return "%s %s" % (self.lawn_mower.brand, self.list_price)
-        return self.pk
+        return "%s" % (self.pk)
 
     def get_absolute_url(self):
-                return reverse('forsale-detail', args=[str(self.id)])
-    class Meta:
-        verbose_name_plural= 'For Sale'
+                return reverse('salelisting-detail', args=[str(self.id)])

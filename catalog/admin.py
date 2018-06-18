@@ -1,14 +1,14 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Customer, ServiceInstance, ServiceType, Employee, LawnMower, ForSale
+from .models import Customer, ServiceInstance, ServiceType, Employee, LawnMower, SaleListing
 
 admin.site.register(Customer)
 admin.site.register(ServiceInstance)
 admin.site.register(ServiceType)
 admin.site.register(Employee)
 #admin.site.register(LawnMower)
-#admin.site.register(ForSale)
+#admin.site.register(SaleListing)
 
 @admin.register(LawnMower)
 class LawnMowerAdmin(admin.ModelAdmin):
@@ -21,12 +21,12 @@ class LawnMowerAdmin(admin.ModelAdmin):
         ('Owner', {
             'fields': ('owner',)
         }),
-        
+
     )
 
 
-@admin.register(ForSale)
-class ForSaleAdmin(admin.ModelAdmin):
+@admin.register(SaleListing)
+class SaleListingAdmin(admin.ModelAdmin):
     list_display = ('pk', 'list_date', 'list_price', 'sale_date', 'sale_price')
     list_filter = ('sale_date',)
     fieldsets = (
@@ -37,7 +37,7 @@ class ForSaleAdmin(admin.ModelAdmin):
             'fields': ('list_date', 'list_price')
         }),
         ('Sale', {
-            'fields': ('sale_date', 'sale_price', 'sale_customer')
+            'fields': ('sale_date', 'sale_price')
         }),
     )
 

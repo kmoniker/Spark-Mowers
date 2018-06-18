@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
-from .models import Customer, Employee, LawnMower, ServiceType, ServiceInstance, ForSale
+from .models import Customer, Employee, LawnMower, ServiceType, ServiceInstance, SaleListing
 
 def index(request):
 
@@ -33,20 +33,20 @@ from django.views import generic
 class ServiceTypeListView(generic.ListView):
     model = ServiceType
 
-class ForSaleListView(LoginRequiredMixin, generic.ListView):
-    model = ForSale
-    queryset = ForSale.objects.filter(sale_date__isnull = True)
+class SaleListingListView(LoginRequiredMixin, generic.ListView):
+    model = SaleListing
+    queryset = SaleListing.objects.filter(sale_date__isnull = True)
     #filter by not sold...
 
 @login_required
-def ForSaleDetailView(request,pk):
+def SaleListingDetailView(request,pk):
     try:
-        forsale_id=ForSale.objects.get(pk=pk)
-    except ForSale.DoesNotExist:
+        salelisting_id=SaleListing.objects.get(pk=pk)
+    except SaleListing.DoesNotExist:
         raise Http404("Mower does not exist")
 
     return render(
         request,
-        'catalog/forsale_detail.html',
-        context={'mower':forsale_id,}
+        'catalog/salelisting_detail.html',
+        context={'mower':salelisting_id,}
     )
