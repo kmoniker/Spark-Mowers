@@ -7,13 +7,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Customer, Employee, LawnMower, ServiceType, ServiceInstance, SaleListing
 
 def index(request):
-
-    num_customers = Customer.objects.all().count()
-
     return render(
         request,
         'index.html',
-        context = {'num_customers':num_customers}
+        context = {}
     )
 
 def contactus(request):
