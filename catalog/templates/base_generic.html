@@ -9,7 +9,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-
+		<link rel="shortcut icon" type="image/png" href="{% static 'images/blackspark.png' %}"/>
 		<title>Spark Lawn Mower Tune-ups</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -25,7 +25,12 @@
 			<!-- Header -->
 				<div id="header">
 					<!-- Logo -->
-						<a href="{% url 'index' %}"><img src="{% static 'images/greensparklogo.png' %}" alt="Spark logo" style="height:175px;margin-bottom:9px"/></a>
+						<a href="{% url 'index' %}"><img src="
+							{% if request.resolver_match.url_name == "classes" %}
+								{% static 'images/bluesparklogo.png' %}
+							{% else %}
+								{% static 'images/greensparklogo.png' %}
+							{% endif %}" alt="Spark logo" style="height:175px;margin-bottom:9px"/></a>
 						<h1 style="color:#ffffffff; font-size:1px" id="logo">Spark<em> Lawn Mower Tune-ups</em></h1>
 					<!-- Nav -->
 						<nav id="nav">
@@ -36,10 +41,9 @@
 								{% if user.is_superuser %}
 								<li class="{% if request.resolver_match.url_name == "for-sale" %}current{% endif %}"><a href="{% url 'for-sale' %}">For Sale</a></li>
 								{% endif %}
-								<li class="{% if request.resolver_match.url_name == "about-us" %}current{% endif %}"><a href="{% url 'about-us'%}">About Us</a></li>
-								{% if user.is_superuser %}
-								<li><a href="two-sidebar.html">Classes</a></li>
-								{% endif%}
+								<li class="{% if request.resolver_match.url_name == "about-us" %}current{% endif %}"><a href="{% url 'about-us' %}">About Us</a></li>
+
+								<li class="{% if request.resolver_match.url_name == "classes" %}current{% endif %}"><a href="{% url 'classes' %}">Classes</a></li>
 								{% if user.is_authenticated %}
 					                <li>
 					                    <a href="{% url 'logout'%}?next={{request.path}}">Logout</a>

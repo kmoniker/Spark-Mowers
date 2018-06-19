@@ -19,6 +19,12 @@ def contactus(request):
         'contact-us.html'
     )
 
+def classes(request):
+    return render(
+        request,
+        'classes.html'
+    )
+
 def aboutus(request):
     return render(
         request,
