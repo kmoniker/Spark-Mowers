@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Customer, ServiceInstance, ServiceType, Employee, LawnMower, SaleListing
+from .models import Customer, ServiceInstance, ServiceType, Employee, LawnMower, SaleListing, SmallEngineClass
 
 admin.site.register(Customer)
 admin.site.register(ServiceInstance)
@@ -9,6 +9,7 @@ admin.site.register(ServiceType)
 admin.site.register(Employee)
 #admin.site.register(LawnMower)
 #admin.site.register(SaleListing)
+# admin.site.register(SmallEngineClass)
 
 @admin.register(LawnMower)
 class LawnMowerAdmin(admin.ModelAdmin):
@@ -41,4 +42,7 @@ class SaleListingAdmin(admin.ModelAdmin):
         }),
     )
 
+@admin.register(SmallEngineClass)
+class SmallEngineClassAdmin(admin.ModelAdmin):
+    list_display = ('__str__', 'session_1_date', 'session_2_date')
 admin.site.site_header = "Spark Lawn Mower Tune-ups"

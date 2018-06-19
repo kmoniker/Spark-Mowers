@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from datetime import datetime
 
 
 # Create your views here.
-from .models import Customer, Employee, LawnMower, ServiceType, ServiceInstance, SaleListing
+from .models import Customer, Employee, LawnMower, ServiceType, ServiceInstance, SaleListing, SmallEngineClass
 
 def index(request):
     return render(
@@ -35,6 +36,11 @@ from django.views import generic
 
 class ServiceTypeListView(generic.ListView):
     model = ServiceType
+    queryset = ServiceType.objects.filter(display_on_website = True)
+
+class SmallEngineClassListView(generic.ListView):
+    model = SmallEngineClass
+    queryset = SmallEngineClass.objects.filter(session_1_date__gte = datetime.today())
 
 class SaleListingListView(LoginRequiredMixin, generic.ListView):
     model = SaleListing
