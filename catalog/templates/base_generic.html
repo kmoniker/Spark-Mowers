@@ -33,7 +33,7 @@
 							{% endif %}" alt="Spark logo" style="height:175px;margin-bottom:9px"/></a>
 						<h1 style="color:#ffffffff; font-size:1px" id="logo">Spark<em> Lawn Mower Tune-ups</em></h1>
 					<!-- Nav -->
-						<nav id="nav">
+						<nav id="nav-classes">
 							<ul>
 								<li class="{% if request.resolver_match.url_name == "index" %}current{% endif %}"><a href="{% url 'index' %}">Home</a></li>
 
@@ -94,7 +94,7 @@
 														<li><a href="{% url 'about-us' %}">About Us</a></li>
 														{% if user.is_authenticated %}
 															<li>
-																<a href="{% url 'logout'%}?next={{request.path}}">Logout {{ user.get_username }}</a>
+																<a href="{% url 'logout'%}?next={{request.path}}">Logout - {{ user.get_username }}</a>
 															</li>
 														{% else %}
 															<li>
