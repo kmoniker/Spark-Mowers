@@ -103,8 +103,10 @@ class SmallEngineClass(models.Model):
         time = time.strftime("%a, %b %d at %I %p")
         return time
 
-    def get_name(self):
-        return self.__name__
+    def slots_left(self):
+        slots = "%s" % (8-self.paid_students)
+        if self.paid_students == 8: slots = "Full"
+        return slots
 
     class Meta:
         verbose_name_plural = "Small Engine Classes"
