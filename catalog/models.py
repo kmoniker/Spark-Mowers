@@ -96,7 +96,7 @@ class SmallEngineClass(models.Model):
 
     def __str__(self):
         self.session_1_date
-        return "%s - %s & %s (ID: %s)" %(self.city, self.format_time(self.session_1_date), self.format_time(self.session_2_date), self.pk)
+        return "%s (ID: %s), %s & %s " %(self.city, self.pk, self.format_time(self.session_1_date), self.format_time(self.session_2_date))
 
     def format_time(self, obj):
         time = obj+timedelta(hours=-6)  #weirdly strftime seems to add 6 hours onto the time...
