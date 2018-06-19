@@ -15,7 +15,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 
-		<link rel="stylesheet" href="{% static 'arcana/assets/css/main.css' %}">
+		<link rel="stylesheet" href="{% if request.resolver_match.url_name == "classes" %}
+			{% static 'arcana/assets/css/bluemain.css' %}
+		{% else %}
+			{% static 'arcana/assets/css/greenmain.css' %}
+		{% endif %}">
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 	</head>
@@ -33,7 +37,7 @@
 							{% endif %}" alt="Spark logo" style="height:175px;margin-bottom:9px"/></a>
 						<h1 style="color:#ffffffff; font-size:1px" id="logo">Spark<em> Lawn Mower Tune-ups</em></h1>
 					<!-- Nav -->
-						<nav id="nav-classes">
+						<nav id="nav">
 							<ul>
 								<li class="{% if request.resolver_match.url_name == "index" %}current{% endif %}"><a href="{% url 'index' %}">Home</a></li>
 
