@@ -15,13 +15,18 @@ admin.site.register(Employee)
 class LawnMowerAdmin(admin.ModelAdmin):
 
     list_display = ('brand', 'owner',)
+    readonly_fields = ('service_record',)
     fieldsets = (
         ('Mower Info', {
-            'fields': ('brand','engine_model','chassis_model', 'serial_number', 'spark_plug')
+            'fields': ('brand','engine_model','chassis_model', 'spark_plug')
         }),
         ('Owner', {
             'fields': ('owner',)
         }),
+        ('Service Record', {
+            'fields': ('service_record',)
+        }),
+
 
     )
 

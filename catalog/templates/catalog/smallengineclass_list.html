@@ -44,7 +44,7 @@
 
                                   {% for class in smallengineclass_list %}
 
-                                  <li><b>{{class.city}} (ID: {{class.pk}})</b><br>Session 1: {{ class.session_1_date }}<br>Session 2: {{ class.session_2_date }}<br>Slots left: {{class.slots_left}}</li>
+                                  <li><b>{{class.city}} (ID: {{class.pk}})</b><br>Session 1: {{ class.session_1_date }}<br>Session 2: {{ class.session_2_date }}<br>{{class.paid_students}}{{class.slots_left}}</li>
                                   {% endfor %}
 
                                 </ul>

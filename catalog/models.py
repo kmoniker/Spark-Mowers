@@ -104,8 +104,14 @@ class SmallEngineClass(models.Model):
         return time
 
     def slots_left(self):
-        slots = "%s" % (8-self.paid_students)
-        if self.paid_students == 8: slots = "Full"
+        slots = "Slots left: "
+        if self.paid_students == 8:
+            slots += "Full"
+        elif self.paid_students <= 4:
+            slots = ""
+        else:
+            slots += "%s" % (8-self.paid_students)
+
         return slots
 
     class Meta:
