@@ -5,7 +5,7 @@ from datetime import datetime
 
 
 # Create your views here.
-from .models import Customer, Employee, LawnMower, ServiceType, ServiceInstance, SaleListing, SmallEngineClass
+from .models import Customer, Employee, LawnMower, ServiceType, ServiceRecord, SaleListing, SmallEngineClass
 
 def index(request):
     return render(

@@ -1,20 +1,31 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Customer, ServiceInstance, ServiceType, Employee, LawnMower, SaleListing, SmallEngineClass
+from .models import Customer, ServiceRecord, ServiceType, Employee, LawnMower, SaleListing, SmallEngineClass
 
-admin.site.register(Customer)
-admin.site.register(ServiceInstance)
+# admin.site.register(Customer)
+admin.site.register(ServiceRecord)
 admin.site.register(ServiceType)
 admin.site.register(Employee)
 #admin.site.register(LawnMower)
 #admin.site.register(SaleListing)
 # admin.site.register(SmallEngineClass)
 
+class ServiceRecordInline(admin.TabularInline):
+    model = ServiceRecord
+
+class LawnMowerInline(admin.TabularInline):
+    model = LawnMower
+
+@admin.register(Customer)
+class CustomerAdmin(admin.ModelAdmin):
+    inlines = [LawnMowerInline,]
+
 @admin.register(LawnMower)
 class LawnMowerAdmin(admin.ModelAdmin):
 
     list_display = ('brand', 'owner',)
+    inlines = [ServiceRecordInline,]
     fieldsets = (
         ('Mower Info', {
             'fields': ('brand','engine_model','chassis_model', 'spark_plug')
@@ -22,11 +33,6 @@ class LawnMowerAdmin(admin.ModelAdmin):
         ('Owner', {
             'fields': ('owner',)
         }),
-        ('Service Record', {
-            'fields': ('service_record',)
-        }),
-
-
     )
 
 
