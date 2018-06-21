@@ -3,8 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import datetime
 
-
-# Create your views here.
+from .forms import EmailSignupForm
 from .models import Customer, Employee, LawnMower, ServiceType, ServiceRecord, SaleListing, SmallEngineClass
 
 def index(request):
@@ -32,14 +31,30 @@ class ServiceTypeListView(generic.ListView):
     model = ServiceType
     queryset = ServiceType.objects.filter(display_on_website = True)
 
-class SmallEngineClassListView(generic.ListView):
-    model = SmallEngineClass
-    queryset = SmallEngineClass.objects.filter(session_1_date__gte = datetime.today())
+# class SmallEngineClassListView(generic.ListView):
+#     model = SmallEngineClass
+#     queryset = SmallEngineClass.objects.filter(session_1_date__gte = datetime.today())
 
 class SaleListingListView(LoginRequiredMixin, generic.ListView):
     model = SaleListing
     queryset = SaleListing.objects.filter(sale_date__isnull = True)
     #filter by not sold...
+
+def SmallEngineClassListView(request):
+    smallengineclass_list = SmallEngineClass.objects.filter(session_1_date__gte = datetime.today())
+    # If this is a POST request then process the Form data
+    if request.method == 'POST':
+        # Create a form instance and populate it with data from the request (binding):
+        form = EmailSignupForm(request.POST)
+    # If this is a GET (or any other method) create the default form.
+    else:
+        form = EmailSignupForm()
+
+    return render(
+        request,
+        'catalog/smallengineclass_list.html',
+        context={'smallengineclass_list':smallengineclass_list,'form':form,}
+    )
 
 @login_required
 def SaleListingDetailView(request,pk):

@@ -19,7 +19,7 @@
                                 <p>My name is Casey Christensen. I took a small engine repair class like this one when I was 12, and the skills I learned helped me start my own business.  I now have over 10 years of experience tuning up lawn mowers and running my own lawn mower tune-up/repair business. I have taught over 100 students small engine repair.  My brother Spencer helps teach this class - he ran the business for two years while I was living in England, and is also very experienced in working on small engines.</p>
 
 								<h3>About the Class</h3>
-                                <p>It is taught in 2 three-hour sessions (over two days or one long day). Dates are determined based on our and your availability. The class is for mature teens (13+) who can sit through and stay engaged in the class.</p>
+                                <p>It is taught in 2 three-hour sessions (over two days or one long day). Dates are determined based on our and your availability. The class is for mature teens (13+) and adults who can sit through and stay engaged in the class.</p>
 
                                 <p>This class will teach students all about small engines. We'll concentrate mainly on the systems operating within a lawn mower - taught all with hands-on work with actual machines. Students will understand how small engines work by taking apart an engine and putting it back together. They will also learn how to tune up lawn mowers by properly installing spark plugs, checking and cleaning air filters, changing the oil, cleaning out the carburetor. Simple repairs such as repairing pull cables and springs will be taught as well.</p>
 
@@ -38,13 +38,13 @@
 
 						<!-- Sidebar -->
 							<section>
-								<h3>Upcoming Classes - $150 per student</h3>
+								<h3>Upcoming Classes</h3>
                                 {% if smallengineclass_list %}
                                 <ul>
 
                                   {% for class in smallengineclass_list %}
 
-                                  <li><b>{{class.city}} (ID: {{class.pk}})</b><br>Session 1: {{ class.session_1_date }}<br>Session 2: {{ class.session_2_date }}<br>{{class.paid_students}}{{class.slots_left}}</li>
+                                  <li><b>{{class.city}} (ID: {{class.pk}})</b><br>Session 1: {{ class.session_1_date }}<br>Session 2: {{ class.session_2_date }}<br>{{class.slots_left}}</li>
                                   {% endfor %}
 
                                 </ul>
@@ -74,6 +74,15 @@
 								</footer>
 							</section>
 
+							<!-- <section>
+								<form action="." method="post">
+						        	{% csrf_token %}
+						        	<table>
+						        		{{ form }}
+						        	</table>
+						        	<input type="submit" value="Submit" />
+						    	</form>
+							</section> -->
 					</div>
 				</div>
 			</div>
