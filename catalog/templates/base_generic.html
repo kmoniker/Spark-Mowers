@@ -48,6 +48,14 @@
 								<li class="{% if request.resolver_match.url_name == "about-us" %}current{% endif %}"><a href="{% url 'about-us' %}">About Us</a></li>
 
 								<li class="{% if request.resolver_match.url_name == "classes" %}current{% endif %}"><a href="{% url 'classes' %}">Classes</a></li>
+								{% if user.is_staff %}
+									<li>
+										<a href="{% url 'crm' %}">CRM</a>
+									</li>
+									<li>
+										<a href="{% url 'admin:index' %}">Admin</a>
+									</li>
+								{% endif %}
 								{% if user.is_authenticated %}
 					                <li>
 					                    <a href="{% url 'logout'%}?next={{request.path}}">Logout</a>
@@ -55,11 +63,6 @@
 									<li style="color:#C0c0c0">
 									   User: {{ user.get_username }}
 									</li>
-								{% if user.is_staff %}
-									<li>
-										<a href="{% url 'admin:index' %}">Admin</a>
-									</li>
-								{% endif %}
 								{% else %}
 								<li>
 									<a href="tel:3854292078"> <img style="width:13px;" src="{% static 'images/grey_call_us.png' %}"/> <em>385-429-2078</em></a>

@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<!-- Main -->
+    <section class="wrapper style1">
+    	<div class="container">
+    		<div id="content">
+
+    			<!-- Content -->
+
+    				<article>
+    					<header>
+    						<h2>Customer Relationship Management</h2>
+    						<p>Spark provides the best customer service in the country</p>
+    					</header>
+                    <ul>
+                        <li><a href="{% url 'customer-list'%}">Customers</a></li>
+                        <li><a href="{% url 'lawn_mower-list' %}">Lawnmowers</a></li>
+                    </ul>
+
+    				</article>
+
+    		</div>
+    	</div>
+    </section>
+{% endblock %}

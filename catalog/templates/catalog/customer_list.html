@@ -1,0 +1,47 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<!-- Main -->
+	<section class="wrapper style1">
+		<div class="container">
+			<div id="content">
+
+				<!-- Content -->
+
+					<article>
+						<header>
+							<h2>Customers</h2>
+							<p>we luv our customers.</p>
+						</header>
+
+                        {% if customer_list %}
+                        <ul>
+
+                          {% for customer in customer_list %}
+                          <li>
+                            <b>{{ customer.name }}</b><br>
+							{{ customer.address }}
+							{% if customer.phone_number %}<br>{{ customer.pretty_phone }}{%endif%}
+							{% if customer.email %}<br>{{ customer.email}}{%endif%}<br>
+							<em>Lawn Mowers</em>
+							{% if customer.lawnmower_set.all %}
+								{%for mower in customer.lawnmower_set.all %}
+							<p>{{ mower.brand }}</p>
+								{% endfor %}
+							{% else %}
+							<p> No lawn mowers :( </p>
+							{% endif %}
+                          </li>
+                          {% endfor %}
+
+                        </ul>
+                        {% else %}
+                          <p>There's nothing here.</p>
+                        {% endif %}
+
+					</article>
+
+			</div>
+		</div>
+	</section>
+{% endblock %}

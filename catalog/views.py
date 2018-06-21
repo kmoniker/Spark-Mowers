@@ -20,12 +20,6 @@ def contactus(request):
         'contact-us.html'
     )
 
-def classes(request):
-    return render(
-        request,
-        'classes.html'
-    )
-
 def aboutus(request):
     return render(
         request,
@@ -59,3 +53,16 @@ def SaleListingDetailView(request,pk):
         'catalog/salelisting_detail.html',
         context={'listing':salelisting_id,}
     )
+
+@login_required
+def crm(request):
+    return render(
+        request,
+        'crm.html'
+    )
+
+class CustomerListView(LoginRequiredMixin, generic.ListView):
+    model = Customer
+
+class LawnMowerListView(LoginRequiredMixin, generic.ListView):
+    model = LawnMower

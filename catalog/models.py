@@ -11,7 +11,11 @@ class Customer(models.Model):
     name = models.CharField(max_length=200, help_text="Name")
     address = models.CharField(max_length=200)
     email = models.CharField(max_length=200, null=True, blank=True)
-    phone_number = models.CharField(max_length=200, null=True, blank=True)
+    phone_number = models.CharField(max_length=10, null=True, blank=True)
+
+    def pretty_phone(self):
+        pretty = '%s-%s-%s' % (self.phone_number[:3], self.phone_number[3:6], self.phone_number[6:])
+        return pretty
 
     def fullname(self):
         return '%s' % (self.name)
