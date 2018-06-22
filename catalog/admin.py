@@ -20,10 +20,7 @@ class LawnMowerInline(admin.TabularInline):
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ('name','address','phone_number','email')
-    fields = ('name','address','phone_number',('email','mailing_lists'))
-    formfield_overrides = {
-        models.ManyToManyField: {'widget': CheckboxSelectMultiple},
-    }
+    fields = ('name','address','phone_number','email',)
     inlines = [LawnMowerInline,]
 
 @admin.register(LawnMower)
