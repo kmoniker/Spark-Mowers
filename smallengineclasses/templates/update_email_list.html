@@ -1,0 +1,36 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<!-- Main -->
+    <section class="wrapper style1">
+    	<div class="container">
+    		<div id="content">
+
+    			<!-- Content -->
+
+    				<article>
+    					<header>
+    						<h2>Email list</h2>
+    						<p>All these people want updates on lawn mower classes</p>
+    					</header>
+
+                    <ul>
+                        {% if subscribers %}
+                        <ul>
+
+                          {% for sub in subscribers %}
+
+                          <li>{{sub.email}}</li>
+                          {% endfor %}
+
+                        </ul>
+                        {% else %}
+                          <p>No subscribers.</p>
+                        {% endif %}
+
+    				</article>
+
+    		</div>
+    	</div>
+    </section>
+{% endblock %}

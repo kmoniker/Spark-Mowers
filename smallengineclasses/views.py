@@ -34,3 +34,11 @@ def Unsubscribe(request, email):
     'unsubscribe.html',
     {'email':email}
     )
+
+def UpdateEmailList(request):
+    subscribers = Student.objects.filter(class_updates=True)
+    return render(
+    request,
+    'update_email_list.html',
+    {'subscribers':subscribers}
+    )
