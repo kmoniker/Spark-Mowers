@@ -30,7 +30,7 @@
 				<div id="header">
 					<!-- Logo -->
 						<a href="{% url 'index' %}"><img src="
-							{% if request.resolver_match.url_name == "classes" %}
+							{% if request.resolver_match.app_name == "smallengineclasses" %}
 								{% static 'images/bluesparklogo.png' %}
 							{% else %}
 								{% static 'images/greensparklogo.png' %}

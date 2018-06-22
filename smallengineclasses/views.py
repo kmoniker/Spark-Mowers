@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.utils import timezone
 from django.contrib import messages
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import EmailSignupForm
 from .models import *
@@ -35,6 +36,7 @@ def Unsubscribe(request, email):
     {'email':email}
     )
 
+@login_required
 def UpdateEmailList(request):
     subscribers = Student.objects.filter(class_updates=True)
     return render(
