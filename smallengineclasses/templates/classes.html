@@ -91,9 +91,10 @@
 									<button type="submit" class="button">Save</button>
 								</form>
 								{% endif %}
-								<!-- {% if user.is_superuser %}
-									<a href="{% url 'UpdateEmailList' %}" class='button'>See List</a>
-								{% endif %} -->
+								{% if user.is_superuser %}
+									<br>
+									<a href="{% url 'smallengineclasses:UpdateEmailList' %}" class='button'>See List</a>
+								{% endif %}
 							</section>
 					</div>
 				</div>
