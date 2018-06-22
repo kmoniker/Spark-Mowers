@@ -21,7 +21,7 @@ class SmallEngineClass(models.Model):
         return Student.objects.filter(smallengineclass=self).count()
 
     def slots_left(self):
-        num = int(self.students_in_class)
+        num = self.students_in_class()
         slots = "Slots left: "
         if num == 8:
             slots += "Full"
