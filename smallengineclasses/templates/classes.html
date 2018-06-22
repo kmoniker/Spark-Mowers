@@ -68,21 +68,31 @@
 
 							<section>
 								<h3>Interested in hosting?</h3>
-								<p>If you have interest in your area and would like to host a class, we'd love to come teach at your house! If you get 7 students to pay for the class, the 8th is free. We may also have time to repair or tune up any lawn mowers that you might have (depending on time in the class).</p>
+								<p id="results">If you have interest in your area (on the Wasatch Front) and would like to host a class, we'd love to come teach at your house! If you get 7 students to pay for the class, the 8th is free. We may also have time to repair or tune up any lawn mowers that you might have (depending on time in the class).</p>
 								<footer>
 									<a href="mailto:sparklawnmowers@gmail.com" class="button">sparklawnmowers@gmail.com</a>
 								</footer>
 							</section>
 
-							<!-- <section>
-								<form action="." method="post">
-						        	{% csrf_token %}
-						        	<table>
-						        		{{ form }}
-						        	</table>
-						        	<input type="submit" value="Submit" />
-						    	</form>
-							</section> -->
+							<section>
+								<h3>Want to be notified of new classes?</h3>
+								{% if messages %}
+									<div>
+										<ul class="messages">
+											{% for message in messages %}
+											<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+											{% endfor %}
+										</ul>
+									</div>
+								{% else %}
+								<form method="POST" class="post-form" action="/classes/#results">
+									{% csrf_token %}
+									{{ form }}
+									<button type="submit" class="button">Save</button>
+								</form>
+
+								{% endif %}
+							</section>
 					</div>
 				</div>
 			</div>

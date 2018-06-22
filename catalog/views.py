@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils import timezone
 from datetime import datetime
 
-from .forms import EmailSignupForm
-from .models import Customer, Employee, LawnMower, ServiceType, ServiceRecord, SaleListing, SmallEngineClass
+from .models import *
 
 def index(request):
     return render(
@@ -39,22 +39,6 @@ class SaleListingListView(LoginRequiredMixin, generic.ListView):
     model = SaleListing
     queryset = SaleListing.objects.filter(sale_date__isnull = True)
     #filter by not sold...
-
-def SmallEngineClassListView(request):
-    smallengineclass_list = SmallEngineClass.objects.filter(session_1_date__gte = datetime.today())
-    # If this is a POST request then process the Form data
-    if request.method == 'POST':
-        # Create a form instance and populate it with data from the request (binding):
-        form = EmailSignupForm(request.POST)
-    # If this is a GET (or any other method) create the default form.
-    else:
-        form = EmailSignupForm()
-
-    return render(
-        request,
-        'catalog/smallengineclass_list.html',
-        context={'smallengineclass_list':smallengineclass_list,'form':form,}
-    )
 
 @login_required
 def SaleListingDetailView(request,pk):

@@ -1,7 +1,7 @@
 from django.contrib import admin
-
+from django.forms import CheckboxSelectMultiple
 # Register your models here.
-from .models import Customer, ServiceRecord, ServiceType, Employee, LawnMower, SaleListing, SmallEngineClass
+from .models import *
 
 # admin.site.register(Customer)
 admin.site.register(ServiceRecord)
@@ -19,6 +19,11 @@ class LawnMowerInline(admin.TabularInline):
 
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
+    list_display = ('name','address','phone_number','email')
+    fields = ('name','address','phone_number',('email','mailing_lists'))
+    formfield_overrides = {
+        models.ManyToManyField: {'widget': CheckboxSelectMultiple},
+    }
     inlines = [LawnMowerInline,]
 
 @admin.register(LawnMower)
@@ -51,8 +56,3 @@ class SaleListingAdmin(admin.ModelAdmin):
             'fields': ('sale_date', 'sale_price')
         }),
     )
-
-@admin.register(SmallEngineClass)
-class SmallEngineClassAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'session_1_date', 'session_2_date')
-admin.site.site_header = "Spark Lawn Mower Tune-ups"

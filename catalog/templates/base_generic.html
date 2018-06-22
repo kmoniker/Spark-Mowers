@@ -15,7 +15,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 
-		<link rel="stylesheet" href="{% if request.resolver_match.url_name == "classes" %}
+		<link rel="stylesheet" href="{% if request.resolver_match.app_name == "smallengineclasses" %}
 			{% static 'arcana/assets/css/bluemain.css' %}
 		{% else %}
 			{% static 'arcana/assets/css/greenmain.css' %}
@@ -47,7 +47,7 @@
 								{% endif %}
 								<li class="{% if request.resolver_match.url_name == "about-us" %}current{% endif %}"><a href="{% url 'about-us' %}">About Us</a></li>
 
-								<li class="{% if request.resolver_match.url_name == "classes" %}current{% endif %}"><a href="{% url 'classes' %}">Classes</a></li>
+								<li class="{% if request.resolver_match.url_name == "classes" %}current{% endif %}"><a href="{% url 'smallengineclasses:classes' %}">Classes</a></li>
 								{% if user.is_staff %}
 									<li>
 										<a href="{% url 'crm' %}">CRM</a>
@@ -68,7 +68,8 @@
 									<a href="tel:3854292078"> <img style="width:13px;" src="{% static 'images/grey_call_us.png' %}"/> <em>385-429-2078</em></a>
 								</li>
 					            {% endif %}
-
+								<li>{{ request.resolver_match.app_name }}
+								</li>
 							</ul>
 						</nav>
 

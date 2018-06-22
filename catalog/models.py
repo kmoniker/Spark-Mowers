@@ -8,9 +8,9 @@ class Customer(models.Model):
     Model representing a lawn mower service Customer
     """
 
-    name = models.CharField(max_length=200, help_text="Name")
-    address = models.CharField(max_length=200)
-    email = models.CharField(max_length=200, null=True, blank=True)
+    name = models.CharField(max_length=200)
+    address = models.CharField(max_length=200, null=True, blank=True)
+    email = models.EmailField(max_length=200, null=True, blank=True)
     phone_number = models.CharField(max_length=10, null=True, blank=True)
 
     def pretty_phone(self):
@@ -87,35 +87,3 @@ class SaleListing(models.Model):
 
     def get_absolute_url(self):
                 return reverse('salelisting-detail', args=[str(self.id)])
-
-
-class SmallEngineClass(models.Model):
-    host = models.CharField(max_length=2000)
-    street_address = models.CharField(max_length=2000)
-    city = models.CharField(max_length=2000)
-    session_1_date = models.DateTimeField()
-    session_2_date = models.DateTimeField()
-    paid_students = models.IntegerField(default=0)
-
-    def __str__(self):
-        self.session_1_date
-        return "%s (ID: %s), %s & %s " %(self.city, self.pk, self.format_time(self.session_1_date), self.format_time(self.session_2_date))
-
-    def format_time(self, obj):
-        time = obj+timedelta(hours=-6)  #weirdly strftime seems to add 6 hours onto the time...
-        time = time.strftime("%a, %b %d at %I %p")
-        return time
-
-    def slots_left(self):
-        slots = "Slots left: "
-        if self.paid_students == 8:
-            slots += "Full"
-        elif self.paid_students <= 4:
-            slots = ""
-        else:
-            slots += "%s" % (8-self.paid_students)
-
-        return slots
-
-    class Meta:
-        verbose_name_plural = "Small Engine Classes"
