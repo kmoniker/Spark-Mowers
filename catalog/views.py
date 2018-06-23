@@ -65,3 +65,10 @@ class CustomerListView(LoginRequiredMixin, generic.ListView):
 
 class LawnMowerListView(LoginRequiredMixin, generic.ListView):
     model = LawnMower
+
+@login_required
+def hours(request):
+    return render(
+        request,
+        'hours.html'
+    )
