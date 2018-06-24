@@ -18,8 +18,16 @@ class Customer(models.Model):
         pretty = '%s-%s-%s' % (self.phone_number[:3], self.phone_number[3:6], self.phone_number[6:])
         return pretty
 
-    def fullname(self):
-        return '%s' % (self.name)
+    def last_service(self):
+        mowers=self.lawnmower_set.all()
+        dates = []
+        for m in mowers:
+            dates.append(m.last_serviced())
+        if len(dates) == 0:
+            return None
+        else:
+            return max(dates)
+
 
     def __str__(self):
         return self.name
@@ -66,7 +74,12 @@ class LawnMower(models.Model):
     notes = models.CharField(max_length=2000, null=True, blank=True)
 
     def __str__(self):
-        return "%s's %s" % (self.owner.fullname(), self.brand)
+        return "%s's %s" % (self.owner.name, self.brand)
+
+    def last_serviced(self):
+        dates = []
+        service = self.servicerecord_set.all().latest('date')
+        return service.date
 
 class Employee(models.Model):
     name = models.CharField(max_length=200)

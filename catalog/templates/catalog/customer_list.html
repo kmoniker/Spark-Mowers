@@ -15,26 +15,39 @@
 						</header>
 
                         {% if customer_list %}
-                        <ul>
+                        <table style="width:75%">
+							<tr>
+								<th>Name</th>
+								<th>Address</th>
+								<th>Phone</th>
+								<th>Email</th>
+							</tr>
+                          	{% for customer in customer_list %}
+                          	<tr>
+                            	<td><b>{{ customer.name }}</b></td>
+								<td>{{ customer.address }}</td>
+								<td>{% if customer.phone_number %}{{ customer.pretty_phone }}{%endif%}</td>
+								<td>{% if customer.email %}{{ customer.email}}{%endif%}</td>
+							</tr>
+							<tr style="height:13px"></tr>
+							<tr>
+								<td><em>Lawn Mowers</em></td>
+								<td><em>Last Serviced</em></td>
+							</tr>
+							<tr>
+								{% if customer.lawnmower_set.all %}
+									{% for mower in customer.lawnmower_set.all %}
+									<td>{{ mower.brand }}</td>
+									<td>{{ mower.last_serviced }}</td>
+									{% endfor %}
+								{% else %}
+								<td> No lawn mowers :( </td>
+								{% endif %}
+							</tr>
+							<tr style="height:26px"></tr>
+                          	{% endfor %}
 
-                          {% for customer in customer_list %}
-                          <li>
-                            <b>{{ customer.name }}</b><br>
-							{{ customer.address }}
-							{% if customer.phone_number %}<br>{{ customer.pretty_phone }}{%endif%}
-							{% if customer.email %}<br>{{ customer.email}}{%endif%}<br>
-							<em>Lawn Mowers</em>
-							{% if customer.lawnmower_set.all %}
-								{%for mower in customer.lawnmower_set.all %}
-							<p>{{ mower.brand }}</p>
-								{% endfor %}
-							{% else %}
-							<p> No lawn mowers :( </p>
-							{% endif %}
-                          </li>
-                          {% endfor %}
-
-                        </ul>
+					  </table>
                         {% else %}
                           <p>There's nothing here.</p>
                         {% endif %}

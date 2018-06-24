@@ -19,14 +19,14 @@ class LawnMowerInline(admin.TabularInline):
 
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ('name','address','phone_number','email')
+    list_display = ('name','address','phone_number','email', 'last_service')
     fields = ('name','address','phone_number','email','notes')
     inlines = [LawnMowerInline,]
 
 @admin.register(LawnMower)
 class LawnMowerAdmin(admin.ModelAdmin):
 
-    list_display = ('brand', 'owner',)
+    list_display = ('brand', 'owner','last_serviced')
     inlines = [ServiceRecordInline,]
     fieldsets = (
         ('Mower Info', {

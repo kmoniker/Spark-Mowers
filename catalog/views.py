@@ -62,6 +62,8 @@ def crm(request):
 
 class CustomerListView(LoginRequiredMixin, generic.ListView):
     model = Customer
+    queryset = Customer.objects.order_by('name')
+    
 
 class LawnMowerListView(LoginRequiredMixin, generic.ListView):
     model = LawnMower
