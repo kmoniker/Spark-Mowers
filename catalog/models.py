@@ -63,7 +63,7 @@ class LawnMower(models.Model):
     chassis_model = models.CharField(max_length=200, help_text="model number of the chassis", blank=True)
     spark_plug = models.CharField(max_length=200)
     owner = models.ForeignKey('Customer', on_delete=models.SET_NULL, null=True)
-    notes = models.TextField(null=True, blank=True)
+    notes = models.CharField(max_length=2000, null=True, blank=True)
 
     def __str__(self):
         return "%s's %s" % (self.owner.fullname(), self.brand)
