@@ -2,61 +2,84 @@
 
 {% block content %}
 <!-- Main -->
-	<section class="wrapper style1">
-		<div class="container">
-			<div id="content">
+				<section class="wrapper style1">
+					<div class="container">
+						<div class="row 200%">
+							<div class="8u 12u(narrower)">
+								<div style="margin:-10px" id="content">
 
-				<!-- Content -->
+									<!-- Content -->
+										{% if customer_list %}
+											<table>
+												<tr>
+													<th>Name</th>
+													<th>Address</th>
+													<th>Phone</th>
+													<!-- <th>Email</th> -->
+												</tr>
+												{% for customer in customer_list %}
+												<tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+												<tr>
+													<td><b>{{ customer.name }}</b></td>
+													<td><b>{{ customer.address }}</b></td>
+													<td style="padding-right: 10px"><b>{% if customer.phone_number %}{{ customer.pretty_phone }}{%endif%}</b></td>
+													<!-- <td style="padding-right: 10px"><b>{% if customer.email %}{{ customer.email}}{%endif%}</b></td> -->
+													<td style="padding-right: 10px"><a href="{{ customer.get_absolute_url }}#nav"><b>View</b></a></td>
+													<td><a href="{{ customer.get_edit_url }}#nav"><b>Edit</b></a></td>
+												</tr>
+												<tr style="height:13px"></tr>
+												<tr>
+													<td><em>Lawn Mowers</em></td>
+													<td><em>Last Service</em></td>
+													<td style="padding-right: 10px"><em>Service Date</em></td>
+													<!-- <td></td> -->
+													<td style="padding-right: 10px"></td>
+													<td><a href="{% url 'add-mower' custfk=customer.pk %}#nav"><b>Add</b></a></td>
+												</tr>
+												{% if customer.lawnmower_set.all %}
+													{% for mower in customer.lawnmower_set.all %}
+													<tr>
+														<td>{{ mower.brand }}</td>
+														<td>{{ mower.last_service }}</td>
+														<td style="padding-right: 10px">{{ mower.last_serviced }}</td>
+														<!-- <td></td> -->
+														<td style="padding-right: 10px"><a href="{{ mower.get_absolute_url }}#nav"><b>View</b></a></td>
+														<td><a href="{{ mower.get_edit_url }}#nav"><b>Edit</b></a></td>
+													</tr>
+													{% endfor %}
+													{% else %}
+													<tr>
+														<td> No lawn mowers :( </td>
+													</tr>
+													{% endif %}
 
-					<article>
-						<header>
-							<h2>Customers</h2>
-							<p>we luv our customers.</p>
-						</header>
 
-                        {% if customer_list %}
-                        <table style="width:75%">
-							<tr>
-								<th>Name</th>
-								<th>Address</th>
-								<th>Phone</th>
-								<th>Email</th>
-							</tr>
-                          	{% for customer in customer_list %}
-                          	<tr>
-                            	<td><b>{{ customer.name }}</b></td>
-								<td>{{ customer.address }}</td>
-								<td>{% if customer.phone_number %}{{ customer.pretty_phone }}{%endif%}</td>
-								<td>{% if customer.email %}{{ customer.email}}{%endif%}</td>
-							</tr>
-							<tr style="height:13px"></tr>
-							<tr>
-								<td><em>Lawn Mowers</em></td>
-								<td><em>Last Service</em></td>
-								<td><em>Service Date</em></td>
-							</tr>
-							<tr>
-								{% if customer.lawnmower_set.all %}
-									{% for mower in customer.lawnmower_set.all %}
-									<td>{{ mower.brand }}</td>
-									<td>{{ mower.last_service }}</td>
-									<td>{{ mower.last_serviced }}</td>
-									{% endfor %}
-								{% else %}
-								<td> No lawn mowers :( </td>
-								{% endif %}
-							</tr>
-							<tr style="height:26px"></tr>
-                          	{% endfor %}
+												<tr style="height:36px"></tr>
+												{% endfor %}
 
-					  </table>
-                        {% else %}
-                          <p>There's nothing here.</p>
-                        {% endif %}
+										  </table>
+											{% else %}
+											  <p>There's nothing here.</p>
+											{% endif %}
 
-					</article>
+								</div>
+							</div>
+							<div class="4u 12u(narrower)">
+								<div id="sidebar">
 
-			</div>
-		</div>
-	</section>
+									<!-- Sidebar -->
+
+										<section>
+											<ul>
+												<li><a href="{% url 'create-customer' %}#nav" class="button">New Customer</a></li>
+												<!-- <li><br></li>
+												<li><a href="{% url 'create-mower' %}#nav" class="button">New Lawn Mower</a></li> -->
+											</ul>
+										</section>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
 {% endblock %}

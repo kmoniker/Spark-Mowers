@@ -1,0 +1,30 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<!-- Main -->
+	<section class="wrapper style1">
+		<div class="container">
+			<div id="content">
+
+				<!-- Content -->
+
+					<article>
+						<header id="scroll">
+							{% if 'add' in request.path %}
+							<h2>New Lawn Mower</h2>
+							{% else %}
+							<h2>Edit Lawn Mower</h2>
+							{% endif %}
+						</header>
+                        <form method="POST" class="post-form">
+                            {% csrf_token %}
+                            {{ form }}
+                            <button type="submit" class="button">Save</button>
+                        </form>
+
+					</article>
+
+			</div>
+		</div>
+	</section>
+{% endblock %}

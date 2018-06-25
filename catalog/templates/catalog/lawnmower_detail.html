@@ -1,0 +1,72 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<!-- Main -->
+				<section class="wrapper style1">
+					<div class="container">
+						<div class="row 200%">
+							<div class="8u 12u(narrower)">
+								<div style="margin:-10px" id="content">
+
+									<!-- Content -->
+											<header id="scroll">
+												<h2>{{ lawnmower }}</h2>
+											</header>
+
+											{{ lawnmower.brand }}<br>
+											{{ lawnmower.engine_model }}<br>
+											{{ lawnmower.chassis_model }}<br>
+											{{ lawnmower.spark_plug }}<br>
+											{{ lawnmower.notes }}<br>
+
+											<table style="width:75%">
+												<tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+												<tr>
+													<td><em>Service</em></td>
+													<td><em>Date</em></td>
+													<td><em>Paid</em></td>
+													<td><em>Employee</em></td>
+													<td></td>
+													<td><a href="{% url 'add-service' mowerfk=lawnmower.pk %}#nav"><b>Add</b></a></td>
+												</tr>
+												{% if lawnmower.servicerecord_set.all %}
+													{% for service in lawnmower.servicerecord_set.all %}
+													<tr>
+														<td>{{ service.service }}</td>
+														<td>{{ service.date }}</td>
+														<td>{{ service.cost }}</td>
+														<td>{{ service.employee }}</td>
+														<td></td>
+														<td><a href="{{ service.get_edit_url }}#nav"><b>Edit</b></a></td>
+													</tr>
+													{% endfor %}
+
+													{% else %}
+													<tr>
+														<td> No Services to show :( </td>
+													</tr>
+													{% endif %}
+
+											</table>
+
+								</div>
+							</div>
+							<div class="4u 12u(narrower)">
+								<div id="sidebar">
+
+									<!-- Sidebar -->
+
+										<section>
+											<ul>
+                                                <li><a href="{{ lawnmower.owner.get_absolute_url }}#nav" class="button">View Customer</a></li>
+                                                <li><br></li>
+												<li><a href="{{ lawnmower.get_edit_url}}#nav" class="button">Edit Lawn Mower</a></li>
+											</ul>
+										</section>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+{% endblock %}

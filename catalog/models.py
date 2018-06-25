@@ -28,6 +28,11 @@ class Customer(models.Model):
         else:
             return max(dates)
 
+    def get_edit_url(self):
+         return reverse('customer-form', args=[str(self.id)])
+
+    def get_absolute_url(self):
+         return reverse('view-customer', args=[str(self.id)])
 
     def __str__(self):
         return self.name
@@ -54,12 +59,18 @@ class ServiceRecord(models.Model):
     """
     service = models.ForeignKey('ServiceType', on_delete=models.SET_NULL, null=True)
     date =  models.DateField(null=True, blank=True)
-    cost = models.CharField(max_length=200, help_text="actual charge for service")
+    cost = models.CharField(max_length=200, help_text="how much they paid")
     employee = models.ForeignKey('Employee', on_delete=models.SET_NULL, null=True)
     lawn_mower = models.ForeignKey('LawnMower', on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return "%s %s" % (self.service,self.date)
+
+    def get_edit_url(self):
+         return reverse('edit-service', args=[str(self.id)])
+
+    def get_absolute_url(self):
+         return reverse('mower-detail', args=[str(self.lawn_mower.id)])
 
 class LawnMower(models.Model):
     """
@@ -67,8 +78,8 @@ class LawnMower(models.Model):
     """
 
     brand = models.CharField(max_length=200)
-    engine_model = models.CharField(max_length=200, help_text="model number of the engine", blank=True)
-    chassis_model = models.CharField(max_length=200, help_text="model number of the chassis", blank=True)
+    engine_model = models.CharField(max_length=200, blank=True)
+    chassis_model = models.CharField(max_length=200, blank=True)
     spark_plug = models.CharField(max_length=200)
     owner = models.ForeignKey('Customer', on_delete=models.SET_NULL, null=True)
     notes = models.CharField(max_length=2000, null=True, blank=True)
@@ -83,6 +94,12 @@ class LawnMower(models.Model):
     def last_serviced(self):
         service = self.servicerecord_set.all().latest('date')
         return service.date
+
+    def get_absolute_url(self):
+         return reverse('mower-detail', args=[str(self.id)])
+
+    def get_edit_url(self):
+         return reverse('mower-form', args=[str(self.id)])
 
 class Employee(models.Model):
     name = models.CharField(max_length=200)

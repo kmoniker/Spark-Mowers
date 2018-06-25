@@ -59,8 +59,13 @@
 
 								<li class="{% if request.resolver_match.url_name == "classes" %}current{% endif %}"><a href="{% url 'smallengineclasses:classes' %}">Classes</a></li>
 								{% if user.is_staff %}
-									<li>
+									<li class="{% if 'crm' in request.path %}current{% endif %}">
 										<a href="{% url 'crm' %}">CRM</a>
+										<ul>
+											<li><a href="{% url 'crm' %}">CRM</a></li>
+											<li><a href="{% url 'create-customer' %}#nav">Create Customer</a></li>
+											<!-- <li><a href="{% url 'create-mower' %}#nav">Create Lawn Mower</a></li> -->
+										</ul>
 									</li>
 									<li>
 										<a href="{% url 'hours' %}">Log hours</a>
