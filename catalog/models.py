@@ -76,8 +76,11 @@ class LawnMower(models.Model):
     def __str__(self):
         return "%s's %s" % (self.owner.name, self.brand)
 
+    def last_service(self):
+        service = self.servicerecord_set.all().latest('date')
+        return service.service
+
     def last_serviced(self):
-        dates = []
         service = self.servicerecord_set.all().latest('date')
         return service.date
 

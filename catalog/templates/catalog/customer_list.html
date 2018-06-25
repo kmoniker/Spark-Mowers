@@ -32,12 +32,14 @@
 							<tr style="height:13px"></tr>
 							<tr>
 								<td><em>Lawn Mowers</em></td>
-								<td><em>Last Serviced</em></td>
+								<td><em>Last Service</em></td>
+								<td><em>Service Date</em></td>
 							</tr>
 							<tr>
 								{% if customer.lawnmower_set.all %}
 									{% for mower in customer.lawnmower_set.all %}
 									<td>{{ mower.brand }}</td>
+									<td>{{ mower.last_service }}</td>
 									<td>{{ mower.last_serviced }}</td>
 									{% endfor %}
 								{% else %}
