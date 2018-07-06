@@ -62,7 +62,8 @@ class ServiceRecord(models.Model):
     cost = models.CharField(max_length=200, help_text="how much they paid")
     employee = models.ForeignKey('Employee', on_delete=models.SET_NULL, null=True)
     lawn_mower = models.ForeignKey('LawnMower', on_delete=models.SET_NULL, null=True)
-
+    notes = models.CharField(max_length=2000, null=True, blank=True)
+    
     def __str__(self):
         return "%s %s" % (self.service,self.date)
 

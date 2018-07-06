@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.utils import timezone
+from django.views import generic
+
 from datetime import datetime
 
 from .models import *
@@ -26,15 +28,10 @@ def aboutus(request):
         'about-us.html'
     )
 
-from django.views import generic
 
 class ServiceTypeListView(generic.ListView):
     model = ServiceType
     queryset = ServiceType.objects.filter(display_on_website = True)
-
-# class SmallEngineClassListView(generic.ListView):
-#     model = SmallEngineClass
-#     queryset = SmallEngineClass.objects.filter(session_1_date__gte = datetime.today())
 
 class SaleListingListView(LoginRequiredMixin, generic.ListView):
     model = SaleListing

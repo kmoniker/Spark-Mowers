@@ -1,68 +1,63 @@
-{% extends "base_generic.html" %}
+{% extends "base_generic_page.html" %}
 
-{% block content %}
-<!-- Main -->
-				<section class="wrapper style1">
-					<div class="container">
-						<div class="row 200%">
-							<div class="8u 12u(narrower)">
-								<div style="margin:-10px" id="content">
+{% block page %}
+	<div class="row 200%">
+		<div class="8u 12u(narrower)">
+			<div style="margin:-10px" id="content">
 
-                                    <!-- Content -->
-                                            <header id="scroll">
-                                                <h2>{{ customer.name }}</h2>
-                                            </header>
-                                            <td style="padding-right: 10px"><b></b></td>
-                                            <!-- <td style="padding-right: 10px"><b></b></td> -->
-                                            {{ customer.address }}<br>
-                                            {% if customer.phone_number %}{{ customer.pretty_phone }}<br>{%endif%}
-                                            {% if customer.email %}{{ customer.email}}<br>{%endif%}
-                                            {{ customer.notes }}
+                <!-- Content -->
+                        <header id="scroll">
+                            <h2>{{ customer.name }}</h2>
+                        </header>
+                        <td style="padding-right: 10px"><b></b></td>
+                        <!-- <td style="padding-right: 10px"><b></b></td> -->
+                        {{ customer.address }}<br>
+                        {% if customer.phone_number %}{{ customer.pretty_phone }}<br>{%endif%}
+                        {% if customer.email %}{{ customer.email}}<br>{%endif%}
+                        {{ customer.notes }}
 
-                                            <table style="width:75%">
-                                                <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
-                                                <tr>
-                                                    <td><em>Lawn Mowers</em></td>
-                                                    <td><em>Last Service</em></td>
-                                                    <td><em>Service Date</em></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td><a href="{% url 'add-mower' custfk=customer.pk %}#nav"><b>Add</b></a></td>
+                        <table style="width:75%">
+                            <tr style="border-bottom:1px solid black"><td colspan="100%"></td></tr>
+                            <tr>
+                                <td><em>Lawn Mowers</em></td>
+                                <td><em>Last Service</em></td>
+                                <td><em>Service Date</em></td>
+                                <td></td>
+                                <td></td>
+                                <td><a href="{% url 'add-mower' custfk=customer.pk %}#nav"><b>Add</b></a></td>
 
-                                                </tr>
-                                                <tr>
-                                                    {% if customer.lawnmower_set.all %}
-                                                        {% for mower in customer.lawnmower_set.all %}
-                                                        <td>{{ mower.brand }}</td>
-                                                        <td>{{ mower.last_service }}</td>
-                                                        <td>{{ mower.last_serviced }}</td>
-                                                        <td></td>
-                                                        <td><a href="{{ mower.get_absolute_url }}#nav"><b>View</b></a></td>
-                                                        <td><a href="{{ mower.get_edit_url }}#nav"><b>Edit</b></a></td>
-                                                        {% endfor %}
-                                                    {% else %}
-                                                    <td> No lawn mowers :( </td>
-                                                    {% endif %}
-                                                </tr>
-                                            </table>
-								</div>
-							</div>
-							<div class="4u 12u(narrower)">
-								<div id="sidebar">
+                            </tr>
+                            <tr>
+                                {% if customer.lawnmower_set.all %}
+                                    {% for mower in customer.lawnmower_set.all %}
+                                    <td>{{ mower.brand }}</td>
+                                    <td>{{ mower.last_service }}</td>
+                                    <td>{{ mower.last_serviced }}</td>
+                                    <td></td>
+                                    <td><a href="{{ mower.get_absolute_url }}#nav"><b>View</b></a></td>
+                                    <td><a href="{{ mower.get_edit_url }}#nav"><b>Edit</b></a></td>
+                                    {% endfor %}
+                                {% else %}
+                                <td> No lawn mowers :( </td>
+                                {% endif %}
+                            </tr>
+                        </table>
+			</div>
+		</div>
+		<div class="4u 12u(narrower)">
+			<div id="sidebar">
 
-									<!-- Sidebar -->
+				<!-- Sidebar -->
 
-										<section>
-											<ul>
-                                                <li><a href="{{ customer.get_edit_url }}#nav" class="button">Edit Customer</a></li>
-                                                <li><br></li>
-												<li><a href="{% url 'add-mower' custfk=customer.pk %}#nav" class="button">New Lawn Mower</a></li>
-											</ul>
-										</section>
+					<section>
+						<ul>
+                            <li><a href="{{ customer.get_edit_url }}#nav" class="button">Edit Customer</a></li>
+                            <li><br></li>
+							<li><a href="{% url 'add-mower' custfk=customer.pk %}#nav" class="button">New Lawn Mower</a></li>
+						</ul>
+					</section>
 
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
+			</div>
+		</div>
+	</div>
 {% endblock %}

@@ -22,10 +22,10 @@
 												<tr>
 													<td><b>{{ customer.name }}</b></td>
 													<td><b>{{ customer.address }}</b></td>
-													<td style="padding-right: 10px"><b>{% if customer.phone_number %}{{ customer.pretty_phone }}{%endif%}</b></td>
+													<td style="padding-right: 10px"><b>{% if customer.phone_number %}<a href="tel:{{customer.phone_number}}" style="color:black;">{{ customer.pretty_phone }}{%endif%}</a></b></td>
 													<!-- <td style="padding-right: 10px"><b>{% if customer.email %}{{ customer.email}}{%endif%}</b></td> -->
 													<td style="padding-right: 10px"><a href="{{ customer.get_absolute_url }}#nav"><b>View</b></a></td>
-													<td><a href="{{ customer.get_edit_url }}#nav"><b>Edit</b></a></td>
+													<td><a href="{{ customer.get_edit_url }}#nav" ><b>Edit</b></a></td>
 												</tr>
 												<tr style="height:13px"></tr>
 												<tr>

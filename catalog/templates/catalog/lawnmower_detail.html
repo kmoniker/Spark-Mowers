@@ -26,7 +26,7 @@
 													<td><em>Date</em></td>
 													<td><em>Paid</em></td>
 													<td><em>Employee</em></td>
-													<td></td>
+													<td><em>Notes</em></td>
 													<td><a href="{% url 'add-service' mowerfk=lawnmower.pk %}#nav"><b>Add</b></a></td>
 												</tr>
 												{% if lawnmower.servicerecord_set.all %}
@@ -36,7 +36,7 @@
 														<td>{{ service.date }}</td>
 														<td>{{ service.cost }}</td>
 														<td>{{ service.employee }}</td>
-														<td></td>
+														<td>{{ service.notes }}</td>
 														<td><a href="{{ service.get_edit_url }}#nav"><b>Edit</b></a></td>
 													</tr>
 													{% endfor %}

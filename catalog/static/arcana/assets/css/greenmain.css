@@ -2299,6 +2299,15 @@
 			font-size: 0.8em;
 		}
 
+		input[type="submit"].small,
+		input[type="reset"].small,
+		input[type="button"].small,
+		.smallest.button {
+			font-size: 0.8em;
+			padding: 0 !important;
+			min-width: 3em !important;
+		}
+
 /* Box */
 
 	.box.highlight {
